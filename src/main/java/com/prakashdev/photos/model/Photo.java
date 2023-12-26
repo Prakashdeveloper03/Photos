@@ -1,57 +1,52 @@
 package com.prakashdev.photos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
-import javax.validation.constraints.NotEmpty;
 
 @Table("PHOTOS")
 public class Photo {
 
-    @Id
-    private Integer id;
+  @Id private Integer id;
 
-    @NotEmpty
-    private String fileName;
+  @NotEmpty private String fileName;
 
-    private String contentType;
+  private String contentType;
 
-    @JsonIgnore
-    private byte[] data;
+  @JsonIgnore private byte[] data;
 
-    public Photo() {
-    }
+  public Photo() {}
 
-    public byte[] getData() {
-        return data;
-    }
+  public byte[] getData() {
+    return data;
+  }
 
-    public void setData(byte[] data) {
-        this.data = data;
-    }
+  public void setData(byte[] data) {
+    this.data = data;
+  }
 
-    public String getContentType() {
-        return contentType;
-    }
+  public String getContentType() {
+    return contentType;
+  }
 
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
+  public void setContentType(String contentType) {
+    this.contentType = contentType;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public String getFileName() {
-        return fileName;
-    }
+  public String getFileName() {
+    return fileName;
+  }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
 }
