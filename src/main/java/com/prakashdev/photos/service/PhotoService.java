@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class PhotosService {
+public class PhotoService {
 
     private final PhotosRepository photosRepository;
 
-    public PhotosService(PhotosRepository photosRepository) {
+    public PhotoService(PhotosRepository photosRepository) {
         this.photosRepository = photosRepository;
     }
 

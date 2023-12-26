@@ -1,7 +1,7 @@
 package com.prakashdev.photos.web;
 
 import com.prakashdev.photos.model.Photo;
-import com.prakashdev.photos.service.PhotosService;
+import com.prakashdev.photos.service.PhotoService;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
@@ -16,15 +16,15 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class DownloadController {
 
-    private final PhotosService photosService;
+    private final PhotoService photoService;
 
-    public DownloadController(PhotosService photosService) {
-        this.photosService = photosService;
+    public DownloadController(PhotoService photoService) {
+        this.photoService = photoService;
     }
 
     @GetMapping("/download/{id}")
     public ResponseEntity<byte[]> download(@PathVariable Integer id) {
-        Photo photo = photosService.get(id);
+        Photo photo = photoService.get(id);
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
         byte[] data = photo.getData();

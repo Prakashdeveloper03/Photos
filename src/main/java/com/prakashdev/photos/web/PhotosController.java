@@ -1,7 +1,7 @@
 package com.prakashdev.photos.web;
 
 import com.prakashdev.photos.model.Photo;
-import com.prakashdev.photos.service.PhotosService;
+import com.prakashdev.photos.service.PhotoService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +19,10 @@ import java.util.Collection;
 @RestController
 public class PhotosController {
 
-    private final PhotosService photosService;
+    private final PhotoService photoService;
 
-    public PhotosController(PhotosService photosService) {
-        this.photosService = photosService;
+    public PhotosController(PhotoService photoService) {
+        this.photoService = photoService;
     }
 
     @GetMapping("/")
@@ -32,23 +32,23 @@ public class PhotosController {
 
     @GetMapping("/photos")
     public Iterable<Photo> get() {
-        return photosService.get();
+        return photoService.get();
     }
 
     @GetMapping("/photos/{id}")
     public Photo get(@PathVariable Integer id) {
-        Photo photo = photosService.get(id);
+        Photo photo = photoService.get(id);
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return photo;
     }
 
     @DeleteMapping("/photos/{id}")
     public void delete(@PathVariable Integer id) {
-        photosService.remove(id);
+        photoService.remove(id);
     }
 
     @PostMapping("/photos")
     public Photo create(@RequestPart("data") MultipartFile file) throws IOException {
-        return photosService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        return photoService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }
